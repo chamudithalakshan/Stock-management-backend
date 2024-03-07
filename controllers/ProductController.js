@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/Products');
+const sendEmailNotification = require('../util/email');
 const bwipjs = require('bwip-js');
 const bodyParser = require('body-parser');
 var cors = require('cors');
@@ -15,13 +16,18 @@ router.get('/all', async (req, res) => {
     try {
         const products = await Product.find();
 
-        // Generate barcodes for each product
+        // Generate barcodes for each product and check for low stock
         for (const product of products) {
             // Generate barcode using product ID
             const barcode = await generateBarcode(product._id.toString());
 
             // Add barcode to the product object
             product.barcode = barcode;
+
+            // Check if quantity is lower than 100 and send email notification
+            if (product.Quantity < 100) {
+                await sendEmailNotification(product);
+            }
         }
 
         res.json(products);
