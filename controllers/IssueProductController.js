@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const IssueOrder = require('../models/IssueProduct');
+var cors = require('cors');
+const bodyParser = require('body-parser');
+router.use(cors());
+router.use(bodyParser.json());
 
 // Create multiple issue orders
 router.post('/bulk', async (req, res) => {

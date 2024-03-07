@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const PurchaseOrder = require('../models/PurchaseOrder');
+var cors = require('cors');
+const bodyParser = require('body-parser');
+router.use(cors());
+router.use(bodyParser.json());
 
 // Create multiple purchase orders
 router.post('/bulk', async (req, res) => {

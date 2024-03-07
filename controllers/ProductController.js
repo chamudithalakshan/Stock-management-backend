@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Product = require('../models/Products');
 const bwipjs = require('bwip-js');
+const bodyParser = require('body-parser');
+var cors = require('cors');
+router.use(cors());
+router.use(bodyParser.json());
 
 // router.use("/server",Server);
 

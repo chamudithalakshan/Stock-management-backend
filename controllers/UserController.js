@@ -2,6 +2,10 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 const User = require('../models/Users');
+const bodyParser = require('body-parser');
+var cors = require('cors');
+router.use(cors());
+router.use(bodyParser.json());
 
 // User login
 router.post('/login', async (req, res) => {

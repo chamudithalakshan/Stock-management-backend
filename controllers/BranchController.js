@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Branch = require('../models/Branch');
+var cors = require('cors');
+const bodyParser = require('body-parser');
+router.use(cors());
+router.use(bodyParser.json());
 
 // Get all branches
 router.get('/all', async (req, res) => {

@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Supplier = require('../models/Supplier');
+const bodyParser = require('body-parser');
+var cors = require('cors');
+router.use(cors());
+router.use(bodyParser.json());
 
 // Get all suppliers
 router.get('/all', async (req, res) => {
